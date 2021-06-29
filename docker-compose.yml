@@ -16,6 +16,8 @@ services:
       KAFKA_CONSUMER_GROUP_ID: transacoes
       KAFKA_AUTO-OFFSET-RESET: latest
       KAFKA_TOPIC_TRANSACTIONS: transacoes
+      KEYCLOAK_ISSUER_URI: http://localhost:18080/auth/realms/transacao
+      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/transacao/protocol/openid-connect/certs
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
       MYSQL_DATABASE: transacao_db
@@ -67,7 +69,7 @@ services:
     image: jboss/keycloak
     ports:
       - 18443:8443
-      - 8080:8080
+      - 18080:8080
       - 19990:9990
     depends_on:
       # Just a delay to wait for postgres! This is not recommended!
@@ -90,7 +92,7 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
       POSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
-      KEYCLOAK_FRONTEND_URL: http://keycloak:8080/auth
+      KEYCLOAK_FRONTEND_URL: http://localhost:18080/auth
 
   analise:
     image: 'zupacademy/analise-financeira'

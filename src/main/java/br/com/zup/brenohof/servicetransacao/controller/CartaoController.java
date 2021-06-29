@@ -2,7 +2,7 @@ package br.com.zup.brenohof.servicetransacao.controller;
 
 import br.com.zup.brenohof.servicetransacao.dto.TransacaoResponse;
 import br.com.zup.brenohof.servicetransacao.repository.CartaoRepository;
-import br.com.zup.brenohof.servicetransacao.repository.EventoTransacaoRepository;
+import br.com.zup.brenohof.servicetransacao.repository.TransacaoRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -18,10 +18,10 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/cartoes")
 public class CartaoController {
 
-    private EventoTransacaoRepository transacaoRepository;
+    private TransacaoRepository transacaoRepository;
     private CartaoRepository cartaoRepository;
 
-    public CartaoController(EventoTransacaoRepository transacaoRepository, CartaoRepository cartaoRepository) {
+    public CartaoController(TransacaoRepository transacaoRepository, CartaoRepository cartaoRepository) {
         this.transacaoRepository = transacaoRepository;
         this.cartaoRepository = cartaoRepository;
     }
