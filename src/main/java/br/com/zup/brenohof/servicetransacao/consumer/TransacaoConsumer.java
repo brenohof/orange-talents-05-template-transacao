@@ -1,7 +1,8 @@
-package br.com.zup.brenohof.servicetransacao;
+package br.com.zup.brenohof.servicetransacao.consumer;
 
+import br.com.zup.brenohof.servicetransacao.repository.EventoTransacaoRepository;
 import br.com.zup.brenohof.servicetransacao.dto.TransacaoMessage;
-import br.com.zup.brenohof.servicetransacao.modelos.EventoTransacao;
+import br.com.zup.brenohof.servicetransacao.modelos.Transacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class TransacaoConsumer {
     @KafkaListener(topics = "${spring.kafka.topic.transactions}")
     public void transacoes(TransacaoMessage transacao) {
         System.out.println("Consumido mensagem = " + transacao.getId());
-        EventoTransacao eventoTransacao = transacao.toModel();
+        Transacao eventoTransacao = transacao.toModel();
         repository.save(eventoTransacao);
         System.out.println("Persistido mensagem = " + transacao.getId());
     }

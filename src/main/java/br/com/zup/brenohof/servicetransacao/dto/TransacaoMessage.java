@@ -2,7 +2,7 @@ package br.com.zup.brenohof.servicetransacao.dto;
 
 import br.com.zup.brenohof.servicetransacao.modelos.Cartao;
 import br.com.zup.brenohof.servicetransacao.modelos.Estabelecimento;
-import br.com.zup.brenohof.servicetransacao.modelos.EventoTransacao;
+import br.com.zup.brenohof.servicetransacao.modelos.Transacao;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,10 +26,10 @@ public class TransacaoMessage {
         this.efetivadaEm = efetivadaEm;
     }
 
-    public EventoTransacao toModel() {
+    public Transacao toModel() {
         Cartao cartao = this.cartao.toModel();
         Estabelecimento estabelecimento = this.estabelecimento.toModel();
-        return new EventoTransacao(id, valor, estabelecimento , cartao, efetivadaEm);
+        return new Transacao(id, valor, estabelecimento , cartao, efetivadaEm);
     }
 
     @Override

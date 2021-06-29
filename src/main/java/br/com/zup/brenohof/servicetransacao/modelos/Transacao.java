@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transacoes")
-public class EventoTransacao {
+public class Transacao {
     @Id @NotNull
     private String id;
     private @NotNull BigDecimal valor;
@@ -18,14 +18,30 @@ public class EventoTransacao {
     private @NotNull LocalDateTime efetivadaEm;
 
     @Deprecated
-    public EventoTransacao() {
+    public Transacao() {
     }
 
-    public EventoTransacao(String id, BigDecimal valor, Estabelecimento estabelecimento, Cartao cartao, LocalDateTime efetivadaEm) {
+    public Transacao(String id, BigDecimal valor, Estabelecimento estabelecimento, Cartao cartao, LocalDateTime efetivadaEm) {
         this.id = id;
         this.valor = valor;
         this.estabelecimento = estabelecimento;
         this.cartao = cartao;
         this.efetivadaEm = efetivadaEm;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public LocalDateTime getEfetivadaEm() {
+        return efetivadaEm;
+    }
+
+    public String getEstabelecimentoNome() {
+        return estabelecimento.getNome();
+    }
+
+    public String getEstabelecimentoCidade() {
+        return estabelecimento.getCidade();
     }
 }
